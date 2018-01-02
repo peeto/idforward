@@ -27,7 +27,7 @@ class Codec extends Config
         $did = '';
 
         if (substr($id, 0, 1)=='x') {
-            $id = '0' . $id;
+            $id = hexdec(substr($id, 1));
         }
 
         if (is_numeric($id)) {
@@ -41,11 +41,13 @@ class Codec extends Config
             $did = intval(substr($id, strlen($srcurl)));
         }
 
+        $hexid = 'x' . strtoupper(dechex($did));
+
         return [
             'id' => $did,
             'url' => $desturl . $did,
-            'hexid' => 'x' . dechex($did),
-            'hexurl' => $srcurl . 'x' . dechex($did)
+            'hexid' => $hexid,
+            'hexurl' => $srcurl . $hexid
         ];
     }
 
@@ -76,8 +78,8 @@ class Codec extends Config
             $qrhtml = '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
 
             $barcode = new BarcodeGenerator();
-            $barcode->setText($aid);
-            $barcode->setType(BarcodeGenerator::Upca);
+            $barcode->setText($aid . ' ' . $this->getConfig('DEST_SITE_NAME'));
+            $barcode->setType(BarcodeGenerator::Code128);
             $barcode->setScale(2);
             $barcode->setThickness(25);
             $barcode->setFontSize(10);
@@ -85,6 +87,7 @@ class Codec extends Config
         }
 
         $result = [
+            'oid' => $id,
             'sitename' => $this->getConfig('DEST_SITE_NAME'),
             'siteurl' => $this->getConfig('DEST_SITE_URL'),
             'srcurl' => $this->getConfig('SRC_SITE_IDURL'),

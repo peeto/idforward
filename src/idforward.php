@@ -24,7 +24,8 @@ class idforward extends Codec
     protected function getInputHTML($data)
     {
         $html = '<form method="get" action="' . $data['srcurl'] . '">';
-        $html .= '<p>Enter ID or profile URL: <input type="text" name="id" value="' . $data['id'] . '"></p>';
+        $html .= '<p>Enter ID or profile URL: <input type="text" name="id" value="' . $data['oid'] . '" />';
+        $html .= '<input type="submit" value="Find" /></p>';
         $html .= '</form>';
 
         return $html;
@@ -33,10 +34,10 @@ class idforward extends Codec
     protected function getOutputHTML($data)
     {
         $html = '<p>';
-        $html .= 'Profile URL: <a href="' . $data['url'] . '" title="' . $data['id'] . '">' . $data['id'] . '</a><br />';
-        $html .= 'Hexidecimal URL: <a href="' . $data['hexurl'] . '" title="' . $data['hexid'] . '">' . $data['hexid'] . '</a><br />';
+        $html .= 'Profile: <a href="' . $data['url'] . '" title="' . $data['id'] . '" target="other">' . $data['id'] . '</a><br />';
+        $html .= 'Hexidecimal: <a href="' . $data['hexurl'] . '" title="' . $data['hexid'] . '">' . $data['hexid'] . '</a><br />';
         $html .= $data['qrhtml'] . '<br />';
-        $html .= $data['bchtml'] . '<br />';
+        //$html .= $data['bchtml'] . '<br />';
         $html .= '</p>';
 
         return $html;
@@ -44,7 +45,7 @@ class idforward extends Codec
 
     public function getHTML($id)
     {
-        $result = $this->decode($id);
+        $result = $this->encode($id);
 
         $html = $this->getTitleHTML($result);
         $html .= $this->getInputHTML($result);
