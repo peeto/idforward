@@ -1,0 +1,25 @@
+{
+    "name": "peeto/idforward",
+    "description": "Application to resolve ID's (numbers) used on a web site",
+    "license": "GNU General Public License v2.0",
+    "authors": [
+        {
+            "name": "peeto",
+            "email": "petersenc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4",
+        "codeitnowin/barcode": "*"
+    },
+    "require-dev": {
+        "ext-xml": "*",
+        "phpunit/phpunit": ">=3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "peeto\\idforward\\": "src/"
+        }
+    }
+}
