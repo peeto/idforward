@@ -1,7 +1,7 @@
 {
     "name": "peeto/idforward",
     "description": "Application to resolve ID's (numbers) used on a web site",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-only",
     "authors": [
         {
             "name": "peeto",
