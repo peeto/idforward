@@ -1,7 +1,7 @@
 {
     "name": "peeto/idforward",
     "description": "Application to resolve ID's (numbers) used on a web site",
-    "license": "GNU General Public License v2.0",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "peeto",
@@ -11,7 +11,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4",
-        "codeitnowin/barcode": "*"
+        "codeitnowin/barcode": "~2.1.0"
     },
     "require-dev": {
         "ext-xml": "*",

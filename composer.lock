@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "673db5b63f8c5486722b3d6c1ce968f4",
-    "content-hash": "de7d41d1cca71b2bb945a81586988d2e",
+    "hash": "6c55c2991367a2697db3a6ae5becf463",
+    "content-hash": "d2318abf721d58981d4a80070118594e",
     "packages": [
         {
             "name": "codeitnowin/barcode",
-            "version": "dev-master",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeitnowin/barcode-generator.git",
-                "reference": "a2de5741709e2cee141c70d8e9331d9cdce53ba8"
+                "reference": "6a32f5ee44b0881e9073fd1fd3dacc9076d2718d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/a2de5741709e2cee141c70d8e9331d9cdce53ba8",
-                "reference": "a2de5741709e2cee141c70d8e9331d9cdce53ba8",
+                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6a32f5ee44b0881e9073fd1fd3dacc9076d2718d",
+                "reference": "6a32f5ee44b0881e9073fd1fd3dacc9076d2718d",
                 "shasum": ""
             },
             "require": {
@@ -40,20 +40,17 @@
                     "email": "er.akhtarkhan@gmail.com"
                 }
             ],
-            "description": "Barcode & Qr Code generator library by http://www.codeitnow.in. You can use it with Custom PHP application or any PHP Framework such as Laravel, Cakephp, Yii, Codeigneter etc.",
+            "description": "Symfony2 Barcode generator library by http://www.codeitnow.in. You can use it with Custom PHP application or any PHP Framework such as Laravel, Cakephp, Yii, Codeigneter etc.",
             "homepage": "http://www.codeitnow.in",
             "keywords": [
                 "Symfony2",
                 "barcode",
                 "cakephp",
-                "code",
                 "generator",
                 "laravel",
-                "qr",
-                "qrcode",
                 "symfony"
             ],
-            "time": "2017-11-02 06:47:09"
+            "time": "2016-11-28 11:31:16"
         }
     ],
     "packages-dev": [
@@ -260,7 +257,7 @@
         },
         {
             "name": "phpdocumentor/reflection-common",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
@@ -625,55 +622,6 @@
             "time": "2015-06-21 13:50:34"
         },
         {
-            "name": "phpunit/php-timer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "d107f347d368dd8a384601398280c7c608390ab7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/d107f347d368dd8a384601398280c7c608390ab7",
-                "reference": "d107f347d368dd8a384601398280c7c608390ab7",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "lead"
-                }
-            ],
-            "description": "Utility class for timing",
-            "homepage": "https://github.com/sebastianbergmann/php-timer/",
-            "keywords": [
-                "timer"
-            ],
-            "time": "2017-03-07 15:42:04"
-        },
-        {
             "name": "phpunit/php-token-stream",
             "version": "2.0.x-dev",
             "source": {
@@ -728,12 +676,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a8a78a4082b86924a005a7b1981b797a6ce64b49"
+                "reference": "efbb48526fd0739823f5cbee4f9fdfd25053dbeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a8a78a4082b86924a005a7b1981b797a6ce64b49",
-                "reference": "a8a78a4082b86924a005a7b1981b797a6ce64b49",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/efbb48526fd0739823f5cbee4f9fdfd25053dbeb",
+                "reference": "efbb48526fd0739823f5cbee4f9fdfd25053dbeb",
                 "shasum": ""
             },
             "require": {
@@ -804,7 +752,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-01-01 07:03:12"
+            "time": "2018-01-24 13:39:40"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -812,12 +760,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "283b9f4f670e3a6fd6c4ff95c51a952eb5c75933"
+                "reference": "e244c19aec6a1f0a2ff9e498b9b4bed22537730a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/283b9f4f670e3a6fd6c4ff95c51a952eb5c75933",
-                "reference": "283b9f4f670e3a6fd6c4ff95c51a952eb5c75933",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/e244c19aec6a1f0a2ff9e498b9b4bed22537730a",
+                "reference": "e244c19aec6a1f0a2ff9e498b9b4bed22537730a",
                 "shasum": ""
             },
             "require": {
@@ -863,7 +811,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-12-10 08:01:53"
+            "time": "2018-01-07 17:10:51"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -916,12 +864,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "b11c729f95109b56a0fe9650c6a63a0fcd8c439f"
+                "reference": "c2019a4d1d15b86fc3da1139c99f6ed16a1fe517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/b11c729f95109b56a0fe9650c6a63a0fcd8c439f",
-                "reference": "b11c729f95109b56a0fe9650c6a63a0fcd8c439f",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/c2019a4d1d15b86fc3da1139c99f6ed16a1fe517",
+                "reference": "c2019a4d1d15b86fc3da1139c99f6ed16a1fe517",
                 "shasum": ""
             },
             "require": {
@@ -972,7 +920,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-12-22 14:50:35"
+            "time": "2018-01-12 08:56:06"
         },
         {
             "name": "sebastian/diff",
@@ -1247,12 +1195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-reflector.git",
-                "reference": "e1b86d7bde734bd7d05454ea964eb8283a3259b6"
+                "reference": "ff755086ff55902772e3fae5dd5f29bcbae68285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/e1b86d7bde734bd7d05454ea964eb8283a3259b6",
-                "reference": "e1b86d7bde734bd7d05454ea964eb8283a3259b6",
+                "url": "https://api.github.com/repos/sebastianbergmann/object-reflector/zipball/ff755086ff55902772e3fae5dd5f29bcbae68285",
+                "reference": "ff755086ff55902772e3fae5dd5f29bcbae68285",
                 "shasum": ""
             },
             "require": {
@@ -1284,7 +1232,7 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
-            "time": "2017-11-16 09:51:26"
+            "time": "2018-01-07 16:00:13"
         },
         {
             "name": "sebastian/recursion-context",
