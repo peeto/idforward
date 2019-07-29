@@ -77,8 +77,11 @@ class Codec extends Config
             $qrCode->setImageType(QrCode::IMAGE_TYPE_PNG);
             $qrhtml = '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
 
+            $bcid  = $aid;
+            if (strlen($bcid) < 10) $bcid = str_repeat('0', 10 - strlen($bcid));
             $barcode = new BarcodeGenerator();
-            $barcode->setText($aid . ' ' . $this->getConfig('DEST_SITE_NAME'));
+            $barcode->setText($bcid);
+            $barcode->setLabel($aid . ' ' . $this->getConfig('DEST_SITE_NAME'));
             $barcode->setType(BarcodeGenerator::Code128);
             $barcode->setScale(2);
             $barcode->setThickness(25);
