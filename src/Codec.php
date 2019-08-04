@@ -83,7 +83,7 @@ class Codec extends Config
             $barcode->setText($bcid);
             $barcode->setLabel($aid . ' ' . $this->getConfig('DEST_SITE_NAME'));
             $barcode->setType(BarcodeGenerator::Code128);
-            $barcode->setScale(2);
+            $barcode->setScale(4);
             $barcode->setThickness(25);
             $barcode->setFontSize(10);
             $bchtml = '<img src="data:image/png;base64,'.$barcode->generate().'" />';
