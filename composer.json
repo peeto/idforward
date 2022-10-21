@@ -11,7 +11,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4",
-        "codeitnowin/barcode": "~2.1.0"
+        "lessclick-system/barcode": "~3.0.6"
     },
     "require-dev": {
         "ext-xml": "*",
