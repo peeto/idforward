@@ -2,8 +2,7 @@
 namespace peeto\idforward;
 
 use peeto\idforward\Config;
-use CodeItNow\BarcodeBundle\Utils\QrCode;
-use CodeItNow\BarcodeBundle\Utils\BarcodeGenerator;
+use Com\Tecnick\Barcode\Barcode;
 
 /**
  * Codec class
@@ -65,28 +64,35 @@ class Codec extends Config
         $bchtml = '';
 
         if ($aid!='') {
-            $qrCode = new QrCode();
-            $qrCode->setText($did['url']);
-            $qrCode->setSize(300);
-            $qrCode->setPadding(10);
-            $qrCode->setErrorCorrection('high');
-            $qrCode->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0));
-            $qrCode->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0));
-            $qrCode->setLabel($this->getConfig('DEST_SITE_NAME'));
-            $qrCode->setLabelFontSize(16);
-            $qrCode->setImageType(QrCode::IMAGE_TYPE_PNG);
-            $qrhtml = '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
+            $barcode = new Barcode();
+            $barcodeObj = $barcode->getBarcodeObj(
+                'QRCODE',
+                $did['url'],
+                -8,
+                -8,
+                'black',
+                [0, 0, 0, 0]
+            );
+
+            $png = $barcodeObj->getPngData();
+            $dataUri = 'data:image/png;base64,' . base64_encode($png);
+            $qrhtml = '<img src="data:' . $dataUri . '" />';
 
             $bcid  = $aid;
             if (strlen($bcid) < 10) $bcid = str_repeat('0', 10 - strlen($bcid));
-            $barcode = new BarcodeGenerator();
-            $barcode->setText($bcid);
-            $barcode->setLabel($aid . ' ' . $this->getConfig('DEST_SITE_NAME'));
-            $barcode->setType(BarcodeGenerator::Code128);
-            $barcode->setScale(4);
-            $barcode->setThickness(25);
-            $barcode->setFontSize(10);
-            $bchtml = '<img src="data:image/png;base64,'.$barcode->generate().'" />';
+            $barcode = new Barcode();
+            $barcodeObj = $barcode->getBarcodeObj(
+                'C128',
+                $bcid,
+                -2,
+                60,
+                'black',
+                [0, 0, 0, 0]
+            );
+
+            $png = $barcodeObj->getPngData();
+            $dataUri = 'data:image/png;base64,' . base64_encode($png);
+            $bchtml = '<img src="' . $dataUri . '" />';
         }
 
         $result = [
