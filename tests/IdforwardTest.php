@@ -36,6 +36,21 @@ $config = [
     }
 
     /**
+     * Test idforward method parameter types
+     */
+    public function testMethodParameterTypes()
+    {
+        $reflection = new \ReflectionClass($this->idforward);
+
+        $this->assertSame('string', (string) $reflection->getConstructor()->getParameters()[0]->getType());
+        $this->assertSame('string', (string) $reflection->getMethod('getHTML')->getParameters()[0]->getType());
+
+        foreach (['getTitleHTML', 'getInputHTML', 'getOutputHTML'] as $methodName) {
+            $this->assertSame('array', (string) $reflection->getMethod($methodName)->getParameters()[0]->getType());
+        }
+    }
+
+    /**
      * Test getTitleHTML method
      */
     public function testGetTitleHTML()
@@ -91,6 +106,7 @@ $config = [
             'hexurl' => 'http://example.com/id/x7B',
             'hexid' => 'x7B',
             'qrhtml' => '<img src="data:image/png;base64,..." />',
+            'bchtml' => '<img src="data:image/png;base64,..." />',
         ];
         $html = $method->invoke($this->idforward, $data);
         
@@ -100,6 +116,7 @@ $config = [
         $this->assertStringContainsString('Hexidecimal:', $html);
         $this->assertStringContainsString('href="http://example.com/id/x7B"', $html);
         $this->assertStringContainsString('x7B', $html);
+        $this->assertStringContainsString('data:image/png;base64', $html);
         $this->assertStringContainsString('</p>', $html);
     }
 

@@ -11,15 +11,37 @@ use Com\Tecnick\Barcode\Barcode;
  */
 class Codec extends Config
 {
-    public function __construct($config)
+    public function __construct(string $config)
     {
         parent::__construct($config);
     }
 
     /**
+     * function translateSize
+     *
+     * Translates a size string into a number for the barcode library
+     */
+    protected function translateSize(?string $size): ?int
+    {
+        if ($size === null) {
+            return null;
+        }
+
+        if (substr($size, -1) == '%') {
+            $size = intval(substr($size, 0, -1));
+            $size = 0 - round($size / 100);
+        } else {
+            $size = intval($size);
+        }
+
+        return $size != 0 ? $size : null;
+
+    }
+
+    /**
      * function decode
      */
-    protected function decode($id)
+    protected function decode(string $id)
     {
         $desturl = $this->getConfig('DEST_SITE_IDURL');
         $srcurl = $this->getConfig('SRC_SITE_IDURL');
@@ -52,11 +74,8 @@ class Codec extends Config
 
     /**
      * function encode
-     *
-     * @todo move barcode configuration to configuration
-     *
      */
-    protected function encode($id)
+    protected function encode(string $id): array
     {
         $did = $this->decode($id);
         $aid = $did['id'];
@@ -68,9 +87,9 @@ class Codec extends Config
             $barcodeObj = $barcode->getBarcodeObj(
                 'QRCODE',
                 $did['url'],
-                -8,
-                -8,
-                'black',
+                $this->translateSize($this->getConfig('QR_WIDTH')) ?? -8,
+                $this->translateSize($this->getConfig('QR_HEIGHT')) ?? -8,
+                $this->getConfig('QR_COLOR') ?? 'black',
                 [0, 0, 0, 0]
             );
 
@@ -84,9 +103,9 @@ class Codec extends Config
             $barcodeObj = $barcode->getBarcodeObj(
                 'C128',
                 $bcid,
-                -2,
-                60,
-                'black',
+                $this->translateSize($this->getConfig('BC_WIDTH')) ?? -2,
+                $this->translateSize($this->getConfig('BC_HEIGHT')) ?? 60,
+                $this->getConfig('BC_COLOR') ?? 'black',
                 [0, 0, 0, 0]
             );
 

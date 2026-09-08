@@ -10,23 +10,23 @@ class Config
 {
     protected $config;
 
-    public function __construct($configfile)
+    public function __construct(string $configfile)
     {
         if ($configfile!='' && file_exists($configfile)) {
             include $configfile;
         } elseif (file_exists(__DIR__ . '/config/config.php')) {
             include __DIR__ . '/config/config.php';
-        } elseif (__DIR__ . '/config/config_default.php') {
+        } elseif (file_exists((__DIR__ . '/config/config_default.php'))) {
             include __DIR__ . '/config/config_default.php';
         } else {
-            throw new Exception('Configuration missing');
+            throw new \Exception('Barcode configuration missing');
         }
         $this->config = $config;
         unset($config);
     }
 
-    protected function getConfig($key)
+    protected function getConfig(string $key)
     {
-        return $this->config[$key];
+        return is_array($this->config) && array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 }

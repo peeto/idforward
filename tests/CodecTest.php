@@ -36,6 +36,38 @@ $config = [
     }
 
     /**
+     * Test that codec input methods require string arguments
+     */
+    public function testCodecInputMethodsRequireStrings()
+    {
+        $reflection = new \ReflectionClass($this->codec);
+
+        foreach (['decode', 'encode'] as $methodName) {
+            $parameter = $reflection->getMethod($methodName)->getParameters()[0];
+
+            $this->assertSame('string', (string) $parameter->getType());
+        }
+    }
+
+    /**
+     * Test that translateSize accepts nullable strings
+     */
+    public function testTranslateSizeAcceptsNullableString()
+    {
+        $reflection = new \ReflectionClass($this->codec);
+        $method = $reflection->getMethod('translateSize');
+        $parameter = $method->getParameters()[0];
+
+        $this->assertSame('?string', (string) $parameter->getType());
+        $this->assertSame('?int', (string) $method->getReturnType());
+        $this->assertTrue($parameter->getType()->allowsNull());
+        $this->assertNull($method->invoke($this->codec, null));
+        $this->assertSame(60, $method->invoke($this->codec, '60'));
+        $this->assertSame(-8, $method->invoke($this->codec, '800%'));
+        $this->assertNull($method->invoke($this->codec, '0'));
+    }
+
+    /**
      * Test decoding numeric ID
      */
     public function testDecodeNumericId()
@@ -138,17 +170,11 @@ $config = [
         $reflection = new \ReflectionClass($this->codec);
         $method = $reflection->getMethod('decode');
         $method->setAccessible(true);
-        
-        // Invalid input that doesn't match any pattern should return empty id
-        // Note: The current implementation has a bug where it tries to convert empty string to hex
-        // This test captures the current behavior
-        try {
-            $result = $method->invoke($this->codec, 'invalid_string');
-            $this->assertEquals('', $result['id']);
-        } catch (\TypeError $e) {
-            // Current implementation throws TypeError when trying to convert '' to hex
-            $this->assertStringContainsString('dechex', $e->getMessage());
-        }
+
+        $this->expectException(\TypeError::class);
+        $this->expectExceptionMessage('dechex()');
+
+        $method->invoke($this->codec, 'invalid_string');
     }
 
     /**
@@ -184,6 +210,8 @@ $config = [
         $reflection = new \ReflectionClass($this->codec);
         $method = $reflection->getMethod('encode');
         $method->setAccessible(true);
+
+        $this->assertSame('array', (string) $method->getReturnType());
         
         $result = $method->invoke($this->codec, '123');
         
@@ -208,15 +236,11 @@ $config = [
         $reflection = new \ReflectionClass($this->codec);
         $method = $reflection->getMethod('encode');
         $method->setAccessible(true);
-        
-        // Current implementation has a bug where it tries to convert '' to hex
-        try {
-            $result = $method->invoke($this->codec, 'invalid');
-            $this->assertEquals('', $result['id']);
-        } catch (\TypeError $e) {
-            // Current implementation throws TypeError when trying to convert '' to hex
-            $this->assertStringContainsString('dechex', $e->getMessage());
-        }
+
+        $this->expectException(\TypeError::class);
+        $this->expectExceptionMessage('dechex()');
+
+        $method->invoke($this->codec, 'invalid');
     }
 
     /**

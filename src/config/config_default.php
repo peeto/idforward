@@ -22,6 +22,35 @@ $config = [
     /**
      * Destination site ID page URL
      */
-    'DEST_SITE_IDURL' => ''
+    'DEST_SITE_IDURL' => '',
     
+    /**
+     * QR code width
+     */
+    'QR_WIDTH' => '800%',
+    
+    /**
+     * QR code height
+     */
+    'QR_HEIGHT' => '800%',
+    
+    /**
+     * QR code color
+     */
+    'QR_COLOR' => 'black',
+    
+    /**
+     * Barcode width
+     */
+    'BC_WIDTH' => '200%',
+    
+    /**
+     * Barcode height
+     */
+    'BC_HEIGHT' => '60',
+    
+    /**
+     * Barcode color
+     */
+    'BC_COLOR' => 'black',
 ];

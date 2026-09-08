@@ -73,4 +73,17 @@ $config = [
         // Test by creating a simple instance and checking if it loads properly
         $this->assertInstanceOf(Config::class, $config);
     }
+
+    /**
+     * Test that missing configuration values return null
+     */
+    public function testMissingConfigValueReturnsNull()
+    {
+        $config = new Config($this->testConfigFile);
+        $reflection = new \ReflectionClass($config);
+        $method = $reflection->getMethod('getConfig');
+        $method->setAccessible(true);
+
+        $this->assertNull($method->invoke($config, 'MISSING_OPTION'));
+    }
 }
