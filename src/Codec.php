@@ -83,8 +83,8 @@ class Codec extends Config
         $bchtml = '';
 
         if ($aid!='') {
-            $barcode = new Barcode();
-            $barcodeObj = $barcode->getBarcodeObj(
+            $qrcode = new Barcode();
+            $qrcodeObj = $qrcode->getBarcodeObj(
                 'QRCODE',
                 $did['url'],
                 $this->translateSize($this->getConfig('QR_WIDTH')) ?? -8,
@@ -93,9 +93,9 @@ class Codec extends Config
                 [0, 0, 0, 0]
             );
 
-            $png = $barcodeObj->getPngData();
-            $dataUri = 'data:image/png;base64,' . base64_encode($png);
-            $qrhtml = '<img src="data:' . $dataUri . '" />';
+            $png = $qrcodeObj->getPngData();
+            $qrData = 'data:image/png;base64,' . base64_encode($png);
+            $qrhtml = '<img src="' . $qrData . '" />';
 
             $bcid  = $aid;
             if (strlen($bcid) < 10) $bcid = str_repeat('0', 10 - strlen($bcid));
@@ -110,8 +110,8 @@ class Codec extends Config
             );
 
             $png = $barcodeObj->getPngData();
-            $dataUri = 'data:image/png;base64,' . base64_encode($png);
-            $bchtml = '<img src="' . $dataUri . '" />';
+            $bcData = 'data:image/png;base64,' . base64_encode($png);
+            $bchtml = '<img src="' . $bcData . '" />';
         }
 
         $result = [
@@ -120,7 +120,9 @@ class Codec extends Config
             'siteurl' => $this->getConfig('DEST_SITE_URL'),
             'srcurl' => $this->getConfig('SRC_SITE_IDURL'),
             'qrhtml' => $qrhtml,
-            'bchtml' => $bchtml
+            'qrdata' => $qrData,
+            'bchtml' => $bchtml,
+            'bcdata' => $bcData
         ];
 
         return $did + $result;
